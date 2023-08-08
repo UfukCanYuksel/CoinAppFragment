@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navi"
+    app:startDestination="@id/coinList">
+
+    <fragment
+        android:id="@+id/coinList"
+        android:name="com.example.coinapp.view.CoinList"
+        android:label="fragment_coin_list"
+        tools:layout="@layout/fragment_coin_list" >
+        <action
+            android:id="@+id/action_coinList_to_coinDetails"
+            app:destination="@id/coinDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/coinDetails"
+        android:name="com.example.coinapp.view.CoinDetails"
+        android:label="fragment_coin_details"
+        tools:layout="@layout/fragment_coin_details" >
+        <action
+            android:id="@+id/action_coinDetails_to_coinList"
+            app:destination="@id/coinList" />
+        <argument
+            android:name="currency"
+            app:argType="string" />
+        <argument
+            android:name="price"
+            app:argType="string" />
+    </fragment>
+</navigation>
