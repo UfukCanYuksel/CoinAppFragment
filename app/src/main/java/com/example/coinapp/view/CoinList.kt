@@ -28,39 +28,26 @@ class CoinList : Fragment() {
     private var compositeDisposable: CompositeDisposable? = null
     private var coinLists : ArrayList<Coin>? = null
     private var coinAdapter = CoinAdapter(arrayListOf())
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         compositeDisposable = CompositeDisposable()
-
-
-
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentCoinListBinding.inflate(layoutInflater , container , false)
         val view = binding.root
         return view
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         val layoutManager : RecyclerView.LayoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.layoutManager = layoutManager
-        println("aa")
         loadData()
-        println("xx")
     }
-
     private fun loadData(){
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
@@ -73,22 +60,16 @@ class CoinList : Fragment() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(this::handleResponse))
     }
-
     private fun handleResponse(coinList : List<Coin>){
         coinLists = ArrayList(coinList)
-
         coinLists?.let {
             coinAdapter = CoinAdapter(it)
             binding.recyclerView.adapter = coinAdapter
         }
 
     }
-
     override fun onDestroy() {
         super.onDestroy()
-
         compositeDisposable?.clear()
     }
-
-
 }

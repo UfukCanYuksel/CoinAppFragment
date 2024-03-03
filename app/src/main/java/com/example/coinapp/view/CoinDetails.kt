@@ -17,22 +17,18 @@ class CoinDetails : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _bindig = FragmentCoinDetailsBinding.inflate(layoutInflater , container , false)
         val view = binding.root
         return view
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         arguments?.let {
             val getCurrency = CoinDetailsArgs.fromBundle(it).currency
             val getPrice = CoinDetailsArgs.fromBundle(it).price

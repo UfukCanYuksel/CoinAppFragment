@@ -7,5 +7,5 @@ import retrofit2.http.GET
 interface CoinAPI {
 
     @GET("atilsamancioglu/K21-JSONDataSet/master/crypto.json")
-    fun getData() : Observable<List<Coin>>
+    fun getData() : Observable<List<Coin>> 
 }
